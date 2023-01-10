@@ -144,17 +144,41 @@ const Container = (props) => {
     }
   } else if (value === "login") {
     view = (
-      <LoginForm
-        setValue={setValue}
-        setUserToken={setUserToken}
-        setUserData={setUserData}
-        setUserName={setUserName}
-        getUser={getUser}
-        userToken={userToken}
-      />
+      <Paper style={styles.paperContainer}>
+        <LoginForm
+          setValue={setValue}
+          setUserToken={setUserToken}
+          setUserData={setUserData}
+          setUserName={setUserName}
+          getUser={getUser}
+          userToken={userToken}
+        />
+      </Paper>
     );
   } else if (value === "logout") {
-    view = <div> Tack för besöket</div>;
+    view = (
+      <Paper style={styles.paperContainer}>
+        <Grid container spacing={0} justify="center" direction="row">
+          <Grid className="login-container">
+            <Grid
+              container
+              direction="column"
+              justify="center"
+              spacing={2}
+              className="login-form"
+            >
+              <Paper
+                variant="elevation"
+                elevation={2}
+                className="login-background"
+              >
+                <div style={{ height: 100 }}> Tack för besöket</div>{" "}
+              </Paper>
+            </Grid>{" "}
+          </Grid>{" "}
+        </Grid>
+      </Paper>
+    );
   }
 
   const hireForm = (
@@ -183,55 +207,53 @@ const Container = (props) => {
     );
   } else {*/
   return (
-    <Paper style={styles.paperContainer}>
-      <Grid container justify="center">
-        <Grid item xs={12}>
-          {openHireForm ? hireForm : null}
-          {view}
-        </Grid>
-        {userToken && value === "map" ? (
-          <Fab
-            color="primary"
-            aria-label="add"
-            onClick={() => {
-              setOpenHireForm(true);
-            }}
-          >
-            <ElectricScooter />
-          </Fab>
-        ) : null}
-
-        <BottomNavigation
-          showLabels
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-            console.log("VALUE IS ", value);
-          }}
-          sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
-        >
-          <BottomNavigationAction label="Karta" icon={<Layers />} value="map" />
-          <BottomNavigationAction
-            label="Konto"
-            icon={<ManageAccounts />}
-            value="account"
-          />
-          {userToken ? (
-            <BottomNavigationAction
-              label="Logga ut"
-              icon={<Logout />}
-              value="logout"
-            />
-          ) : (
-            <BottomNavigationAction
-              label="Logga in"
-              icon={<Login />}
-              value="login"
-            />
-          )}
-        </BottomNavigation>
+    <Grid container justify="center">
+      <Grid item xs={12}>
+        {openHireForm ? hireForm : null}
+        {view}
       </Grid>
-    </Paper>
+      {userToken && value === "map" ? (
+        <Fab
+          color="primary"
+          aria-label="add"
+          onClick={() => {
+            setOpenHireForm(true);
+          }}
+        >
+          <ElectricScooter />
+        </Fab>
+      ) : null}
+
+      <BottomNavigation
+        showLabels
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+          console.log("VALUE IS ", value);
+        }}
+        sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+      >
+        <BottomNavigationAction label="Karta" icon={<Layers />} value="map" />
+        <BottomNavigationAction
+          label="Konto"
+          icon={<ManageAccounts />}
+          value="account"
+        />
+        {userToken ? (
+          <BottomNavigationAction
+            label="Logga ut"
+            icon={<Logout />}
+            value="logout"
+          />
+        ) : (
+          <BottomNavigationAction
+            label="Logga in"
+            icon={<Login />}
+            value="login"
+          />
+        )}
+      </BottomNavigation>
+    </Grid>
   );
   // }
 };

@@ -155,7 +155,11 @@ const LayerAccordion = (props) => {
 
     return (
         <div>
-            <Accordion expanded={expanded} onChange={handleChange}>
+            <Accordion
+                expanded={expanded}
+                onChange={handleChange}
+                sx={{ backgroundColor: 'primary.light' }}
+            >
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                     <Typography>{props.title}</Typography>
                 </AccordionSummary>

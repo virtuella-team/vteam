@@ -14,7 +14,7 @@ import { useState } from 'react';
 const theme = createTheme({
     palette: {
         primary: {
-            main: green[500],
+            main: '#81c784',
         },
     },
 });
