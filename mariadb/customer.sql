@@ -29,7 +29,7 @@ CREATE PROCEDURE get_customer_by_username(
 
    SELECT surname,lastname,adress,billing_adress,username,email,balance,status,klarna
      FROM customer
-    WHERE username = a_username;
+    WHERE username = a_username AND deleted = 0;
 
 
   END
